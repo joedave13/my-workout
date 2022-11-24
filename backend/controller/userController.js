@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const mongoose = require('mongoose');
 
 const login = async (req, res) => {
     res.status(200).json({
@@ -8,9 +7,21 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
-    res.status(200).json({
-        message: 'User register.',
-    });
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.register(email, password);
+
+        res.status(201).json({
+            message: 'User is registered successfully!',
+            email,
+            user,
+        });
+    } catch (error) {
+        res.status(400).json({
+            error: error.message,
+        });
+    }
 };
 
 module.exports = {
