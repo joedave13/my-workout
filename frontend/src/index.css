@@ -131,3 +131,6 @@ form.login {
     background: #fff;
     border-radius: 4px;
 }
+.user-email-information {
+    margin-right: 15px;
+}
