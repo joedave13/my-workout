@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { getWorkouts, getSingleWorkout, createWorkout, updateWorkout, deleteWorkout } = require('../controller/workoutController');
+const auth = require('../middleware/auth');
+
+router.use(auth);
 
 router.get('/', getWorkouts);
 
